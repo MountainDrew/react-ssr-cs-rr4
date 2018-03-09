@@ -1,8 +1,8 @@
 {
-  "name": "react-ssr-codesplitting-2",
+  "name": "react-ssr-cs-rr4",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This is a boiletplate for implementing server side rendering, code-splitting, and React Router 4.",
+  "main": "./src/server.js",
   "scripts": {
     "build": "NODE_ENV=production webpack --watch",
     "build:watch": "webpack --watch",
@@ -33,7 +33,7 @@
     "react-test-renderer": "^16.0.0",
     "webpack": "^3.11.0"
   },
-  "author": "",
+  "author": "Andrew Collins (https://github.com/mountaindrew)",
   "license": "ISC",
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.40"
