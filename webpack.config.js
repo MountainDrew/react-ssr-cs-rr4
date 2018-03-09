@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
 
+const NODE_ENV = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+
 module.exports = {
   entry: {
     vendor: [
@@ -44,6 +46,11 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity
-    })
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(NODE_ENV)
+      }
+    }),
   ]
 };
