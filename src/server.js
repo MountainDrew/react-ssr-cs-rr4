@@ -44,6 +44,7 @@ server.get(routeMatching, (req, res) => {
       </head>
       <body>
         <div id="app">${html}</div>
+        <script src="/dist/vendor.js"></script>
         <script src="/dist/main.js"></script>
         ${scripts.map(script => {
           return `<script src="/dist/${script.file}"></script>`
