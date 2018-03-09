@@ -7,9 +7,10 @@
     "build": "NODE_ENV=production webpack --watch",
     "build:watch": "webpack --watch",
     "server:watch": "nodemon --exec babel-node ./src/server.js",
-    "start:dev": "npm-run-all --parallel build:watch server:watch",
-    "start:prod": "npm-run-all --parallel build server:watch",
-    "start": "npm run start:dev"
+    "start:dev": "npm run clean && npm-run-all --parallel build:watch server:watch",
+    "start:prod": "npm run clean && npm-run-all --parallel build server:watch",
+    "start": "npm run start:dev",
+    "clean": "rimraf ./dist"
   },
   "dependencies": {
     "babel-cli": "^6.24.1",
@@ -31,6 +32,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-test-renderer": "^16.0.0",
+    "rimraf": "^2.6.2",
     "webpack": "^3.11.0"
   },
   "author": "Andrew Collins (https://github.com/mountaindrew)",
