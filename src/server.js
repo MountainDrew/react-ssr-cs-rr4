@@ -7,7 +7,7 @@ import { renderToString } from 'react-dom/server';
 import Loadable from 'react-loadable';
 import { getBundles } from 'react-loadable/webpack';
 
-import App from './components/App';
+import App from './App';
 
 const stats = require(path.resolve('dist', 'react-loadable.json'));
 const server = express();
