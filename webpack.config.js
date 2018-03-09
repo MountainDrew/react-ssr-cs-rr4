@@ -1,8 +1,15 @@
+const webpack = require('webpack');
 const path = require('path');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
 
 module.exports = {
   entry: {
+    vendor: [
+      'react',
+      'react-dom',
+      'react-router-dom/BrowserRouter',
+      'react-loadable'
+    ],
     main: './src/client',
   },
   output: {
@@ -32,7 +39,11 @@ module.exports = {
   devtool: 'inline-source-map',
   plugins: [
     new ReactLoadablePlugin({
-      filename:  path.resolve(__dirname, 'dist', 'react-loadable.json'),
+      filename: path.resolve(__dirname, 'dist', 'react-loadable.json'),
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity
+    })
   ]
 };
