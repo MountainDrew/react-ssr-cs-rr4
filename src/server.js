@@ -9,10 +9,10 @@ import { getBundles } from 'react-loadable/webpack';
 
 import App from './components/App';
 
-const stats = require('../dist/react-loadable.json');
+const stats = require(path.resolve('dist', 'react-loadable.json'));
 const server = express();
 
-server.use('/dist', express.static(path.join(__dirname, 'dist')));
+server.use('/dist', express.static(path.resolve('dist')));
 
 server.get('*', (req, res) => {
   const modules = [];
