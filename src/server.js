@@ -17,13 +17,25 @@ server.use('/dist', express.static(path.resolve('dist')));
 const routeMatching = /^(\/(\w+)?)+$/
 server.get(routeMatching, (req, res) => {
   const modules = [];
+  const context = {};
+
   const html = renderToString(
     <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-      <StaticRouter location={req.path} context={{}}>
+      <StaticRouter location={req.path} context={context}>
         <App/>
       </StaticRouter>
     </Loadable.Capture>
   );
+
+  if (context.url) {
+    return res.redirect(301, context.url);
+  }
+
+  if (context.notFound) {
+    res.status(404);
+
+    //potentially render another static 404 route.
+  }
 
   const bundles = getBundles(stats, modules);
 
