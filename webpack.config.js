@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
 
+const uglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 const NODE_ENV = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 module.exports = {
@@ -40,6 +42,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   plugins: [
+    NODE_ENV === 'production' ? new uglifyJSPlugin() : _ => null,
     new ReactLoadablePlugin({
       filename: path.resolve(__dirname, 'dist', 'react-loadable.json'),
     }),
