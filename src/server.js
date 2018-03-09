@@ -14,7 +14,8 @@ const server = express();
 
 server.use('/dist', express.static(path.resolve('dist')));
 
-server.get('*', (req, res) => {
+const routeMatching = /^(\/(\w+)?)+$/
+server.get(routeMatching, (req, res) => {
   const modules = [];
   const html = renderToString(
     <Loadable.Capture report={moduleName => modules.push(moduleName)}>
